@@ -12,6 +12,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,8 +29,9 @@ public class PointsResource {
 
     @PostMapping("add")
     public ResponseEntity<ApiResponse> add(@Valid @RequestBody Transaction transaction) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(new ApiResponse(true, "success",
-                pointsService.addTransaction(transaction)));
+        pointsService.addTransaction(transaction);
+        return ResponseEntity.status(HttpStatus.CREATED).body(new ApiResponse(true, "success", new ArrayList<>()
+                ));
     }
 
     @PostMapping("spend")

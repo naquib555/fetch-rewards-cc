@@ -23,7 +23,7 @@ public class PointsService {
      *
      * @param transaction Awarded Points information
      */
-    public List<Transaction> addTransaction(Transaction transaction) {
+    public void addTransaction(Transaction transaction) {
 
         // updating balance with awarded points
         getData().getBalances().put(transaction.getPayer(),
@@ -31,8 +31,6 @@ public class PointsService {
 
         // adding into transaction repo
         getData().getTransactions().add(transaction);
-
-        return getData().getTransactions();
     }
 
     /**
