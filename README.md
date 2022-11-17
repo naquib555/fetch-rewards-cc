@@ -61,7 +61,7 @@ Note: You can use ```http://127.0.0.1:8710/``` instead of ```http://localhost:87
 
 Once the application is running, by using postman (my recommendation) or other alternatives, the APIs can be called.
 
-### Add Transaction
+### 1. Add Transaction
 - URL: ```http://localhost:8710/api/v1/points/add```
 - Call Type: ```POST```
 - Request Body: ```{
@@ -75,7 +75,7 @@ Once the application is running, by using postman (my recommendation) or other a
   "data": []
   }```
 
-### Points Spent
+### 2. Points Spent
 - URL: ```http://localhost:8710/api/v1/points/spend```
 - Call Type: ```POST```
 - Request Body: ```{
@@ -100,7 +100,7 @@ Once the application is running, by using postman (my recommendation) or other a
   ]
   }```
 
-### Points Balance
+### 3. Points Balance
 - URL: ```http://localhost:8710/api/v1/points/balance```
 - Call Type: ```GET```
 - Sample Success Response: ```{
@@ -112,5 +112,7 @@ Once the application is running, by using postman (my recommendation) or other a
   "DANNON": 1000
   }
   }```
+
+A little explanation on the success response. A field ```status``` is used to identify the call was successful or not by ```true``` and ```false```, with that there is a ```message``` field which explains briefly the message and ```data``` field which holds the response data.
 
 Thank you!
