@@ -1,24 +1,2 @@
 server:
   port: 8710
-
-spring:
-  datasource:
-    url: jdbc:h2:file:./data/app_db;DB_CLOSE_ON_EXIT=FALSE
-    driverClassName: org.h2.Driver
-    username: sa
-    password:
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    hibernate:
-      ddl-auto: create
-    show-sql: false
-    properties:
-      hibernate:
-        format_sql: false
-    h2:
-      console:
-        path: /h2-console
-        settings:
-          trace: false
-          web-allow-others: false
-        enabled: true
