@@ -13,7 +13,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @SpringBootTest(classes = PointsApplication.class)
-class PointsServiceTest {
+public class PointsServiceTest {
 
     @Test
     @DisplayName("Should add new transaction and update point balance of payer")
