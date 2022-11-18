@@ -21,7 +21,7 @@ public class PointsServiceTest {
 
         // given
         PointsService pointsService = new PointsService();
-        Transaction newTransaction = new Transaction("DANNON", 300, LocalDateTime.now());
+        Transaction newTransaction = new Transaction(1, "DANNON", 300, LocalDateTime.now());
         List<Transaction> expectedTransactions = Arrays.asList(newTransaction);
         Map<String, Integer> expectedBalance = new HashMap<String, Integer>() {
             {
@@ -178,21 +178,21 @@ public class PointsServiceTest {
         // given
         PointsService pointsService = new PointsService();
         List<Transaction> preTransactions = new ArrayList<Transaction>(Arrays.asList(
-                new Transaction("DANNON",
+                new Transaction(1, "DANNON",
                         300,
                         LocalDateTime.of(2022, 10, 31, 10, 0, 0, 0))
         ));
-        String payerName = "DANNON";
+        Integer payerId = 1;
         Integer pointsToBeUpdated = 100;
         List<Transaction> expectedTransactions = new ArrayList<Transaction>(Arrays.asList(
-                new Transaction("DANNON",
+                new Transaction(1, "DANNON",
                         100,
                         LocalDateTime.of(2022, 10, 31, 10, 0, 0, 0))
         ));
 
         // when
         pointsService.setData(new Data(preTransactions, new HashMap<>()));
-        pointsService.updatePayerPoints(payerName, pointsToBeUpdated);
+        pointsService.updatePayerPoints(payerId, pointsToBeUpdated);
 
         // then
         Assertions.assertEquals(expectedTransactions, pointsService.getData().getTransactions());
@@ -200,19 +200,19 @@ public class PointsServiceTest {
 
 
     List<Transaction> prepareTransactionData() {
-        Transaction transaction1 = new Transaction("DANNON",
+        Transaction transaction1 = new Transaction(1, "DANNON",
                 300,
                 LocalDateTime.of(2022, 10, 31, 10, 0, 0, 0));
-        Transaction transaction2 = new Transaction("UNILIVER",
+        Transaction transaction2 = new Transaction(2, "UNILIVER",
                 200,
                 LocalDateTime.of(2022, 10, 31, 11, 0, 0, 0));
-        Transaction transaction3 = new Transaction("DANNON",
+        Transaction transaction3 = new Transaction(3, "DANNON",
                 -200,
                 LocalDateTime.of(2022, 10, 31, 15, 0, 0, 0));
-        Transaction transaction4 = new Transaction("MILLER COORS",
+        Transaction transaction4 = new Transaction(4, "MILLER COORS",
                 10000,
                 LocalDateTime.of(2022, 11, 01, 14, 0, 0, 0));
-        Transaction transaction5 = new Transaction("DANNON",
+        Transaction transaction5 = new Transaction(5, "DANNON",
                 1000,
                 LocalDateTime.of(2022, 11, 02, 14, 0, 0, 0));
 

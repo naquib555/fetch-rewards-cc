@@ -1,5 +1,6 @@
 package com.fetchrewards.points.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
@@ -11,8 +12,10 @@ import java.time.LocalDateTime;
 @Setter
 @ToString
 @EqualsAndHashCode
+@JsonIgnoreProperties({"id"})
 public class Transaction {
 
+    private Integer id;
     @NotBlank(message = "Payer is required")
     private String payer;
     @NotNull(message = "Points is mandatory")

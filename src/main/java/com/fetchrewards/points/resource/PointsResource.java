@@ -44,14 +44,6 @@ public class PointsResource {
         return ResponseEntity.ok(new ApiResponse(true, "success", pointsService.getBalance()));
     }
 
-    @PostMapping("populate")
-    public ApiResponse populate(@RequestBody List<Transaction> transaction) {
-        for (Transaction tran : transaction)
-            pointsService.addTransaction(tran);
-
-        return new ApiResponse(true, "success", null);
-    }
-
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ApiResponse handleValidationExceptions(

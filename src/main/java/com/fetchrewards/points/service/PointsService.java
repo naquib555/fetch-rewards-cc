@@ -12,8 +12,11 @@ public class PointsService {
     // Data to hold transaction records and balance of payers
     private Data data;
 
+    Integer idCounter;
+
     public PointsService() {
         this.data = new Data(new ArrayList<>(), new HashMap<>());
+        idCounter = 0;
     }
 
     /**
@@ -29,6 +32,7 @@ public class PointsService {
         getData().getBalances().put(transaction.getPayer(),
                 getData().getBalances().getOrDefault(transaction.getPayer(), 0) + transaction.getPoints());
 
+        transaction.setId(++idCounter);
         // adding into transaction repo
         getData().getTransactions().add(transaction);
     }
@@ -71,7 +75,7 @@ public class PointsService {
                 usedTransaction.add(transaction);
             } else {
                 // updating the points of the payer
-                updatePayerPoints(transaction.getPayer(), transaction.getPoints() - remainingPoints);
+                updatePayerPoints(transaction.getId(), transaction.getPoints() - remainingPoints);
 
                 pointsToSpent = remainingPoints;
                 remainingPoints = 0;
@@ -125,13 +129,13 @@ public class PointsService {
      * <p>
      * This method updates the points of given payer in the transaction repo
      *
-     * @param payer         name of the payer
+     * @param id         id of the payer
      * @param updatedPoints points to be updated
      */
-    public void updatePayerPoints(String payer, Integer updatedPoints) {
+    public void updatePayerPoints(Integer id, Integer updatedPoints) {
 
         getData().getTransactions().stream()
-                .filter(x -> x.getPayer().equals(payer))
+                .filter(x -> x.getId() == id)
                 .findFirst()
                 .ifPresent(x -> x.setPoints(updatedPoints));
     }
